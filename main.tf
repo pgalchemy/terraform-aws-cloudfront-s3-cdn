@@ -59,31 +59,31 @@ resource "aws_s3_bucket" "origin" {
   force_destroy = var.origin_force_destroy
   region        = data.aws_region.current.name
 
-  cors_rule {
-    allowed_headers = var.cors_allowed_headers
-    allowed_methods = var.cors_allowed_methods
-    allowed_origins = sort(
-      distinct(compact(concat(var.cors_allowed_origins, var.aliases))),
-    )
-    expose_headers  = var.cors_expose_headers
-    max_age_seconds = var.cors_max_age_seconds
-  }
+  # cors_rule {
+  #   allowed_headers = var.cors_allowed_headers
+  #   allowed_methods = var.cors_allowed_methods
+  #   allowed_origins = sort(
+  #     distinct(compact(concat(var.cors_allowed_origins, var.aliases))),
+  #   )
+  #   expose_headers  = var.cors_expose_headers
+  #   max_age_seconds = var.cors_max_age_seconds
+  # }
 }
 
-module "logs" {
-  source                   = "git::https://github.com/cloudposse/terraform-aws-s3-log-storage.git?ref=tags/0.5.0"
-  namespace                = var.namespace
-  stage                    = var.stage
-  name                     = var.name
-  delimiter                = var.delimiter
-  attributes               = compact(concat(var.attributes, ["logs"]))
-  tags                     = var.tags
-  lifecycle_prefix         = var.log_prefix
-  standard_transition_days = var.log_standard_transition_days
-  glacier_transition_days  = var.log_glacier_transition_days
-  expiration_days          = var.log_expiration_days
-  force_destroy            = var.origin_force_destroy
-}
+# module "logs" {
+#   source                   = "git::https://github.com/cloudposse/terraform-aws-s3-log-storage.git?ref=tags/0.5.0"
+#   namespace                = var.namespace
+#   stage                    = var.stage
+#   name                     = var.name
+#   delimiter                = var.delimiter
+#   attributes               = compact(concat(var.attributes, ["logs"]))
+#   tags                     = var.tags
+#   lifecycle_prefix         = var.log_prefix
+#   # standard_transition_days = var.log_standard_transition_days
+#   # glacier_transition_days  = var.log_glacier_transition_days
+#   expiration_days          = var.log_expiration_days
+#   force_destroy            = var.origin_force_destroy
+# }
 
 module "distribution_label" {
   source     = "git::https://github.com/cloudposse/terraform-terraform-label.git?ref=tags/0.4.0"
@@ -122,11 +122,11 @@ resource "aws_cloudfront_distribution" "default" {
   price_class         = var.price_class
   depends_on          = [aws_s3_bucket.origin]
 
-  logging_config {
-    include_cookies = var.log_include_cookies
-    bucket          = module.logs.bucket_domain_name
-    prefix          = var.log_prefix
-  }
+  # logging_config {
+  #   include_cookies = var.log_include_cookies
+  #   bucket          = module.logs.bucket_domain_name
+  #   prefix          = var.log_prefix
+  # }
 
   aliases = var.aliases
 
@@ -201,12 +201,12 @@ resource "aws_cloudfront_distribution" "default" {
   tags = module.distribution_label.tags
 }
 
-module "dns" {
-  source           = "git::https://github.com/cloudposse/terraform-aws-route53-alias.git?ref=tags/0.3.0"
-  enabled          = var.enabled && length(var.parent_zone_id) > 0 || length(var.parent_zone_name) > 0 ? true : false
-  aliases          = var.aliases
-  parent_zone_id   = var.parent_zone_id
-  parent_zone_name = var.parent_zone_name
-  target_dns_name  = aws_cloudfront_distribution.default.domain_name
-  target_zone_id   = aws_cloudfront_distribution.default.hosted_zone_id
-}
+# module "dns" {
+#   source           = "git::https://github.com/cloudposse/terraform-aws-route53-alias.git?ref=tags/0.3.0"
+#   enabled          = var.enabled && length(var.parent_zone_id) > 0 || length(var.parent_zone_name) > 0 ? true : false
+#   aliases          = var.aliases
+#   parent_zone_id   = var.parent_zone_id
+#   parent_zone_name = var.parent_zone_name
+#   target_dns_name  = aws_cloudfront_distribution.default.domain_name
+#   target_zone_id   = aws_cloudfront_distribution.default.hosted_zone_id
+# }

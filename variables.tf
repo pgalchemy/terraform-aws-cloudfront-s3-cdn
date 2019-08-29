@@ -112,32 +112,32 @@ variable "comment" {
   description = "Comment for the origin access identity"
 }
 
-variable "log_include_cookies" {
-  type        = bool
-  default     = false
-  description = "Include cookies in access logs"
-}
+# variable "log_include_cookies" {
+#   type        = bool
+#   default     = false
+#   description = "Include cookies in access logs"
+# }
 
-variable "log_prefix" {
-  type        = string
-  default     = ""
-  description = "Path of logs in S3 bucket"
-}
+# variable "log_prefix" {
+#   type        = string
+#   default     = ""
+#   description = "Path of logs in S3 bucket"
+# }
 
-variable "log_standard_transition_days" {
-  description = "Number of days to persist in the standard storage tier before moving to the glacier tier"
-  default     = 30
-}
+# variable "log_standard_transition_days" {
+#   description = "Number of days to persist in the standard storage tier before moving to the glacier tier"
+#   default     = 30
+# }
 
-variable "log_glacier_transition_days" {
-  description = "Number of days after which to move the data to the glacier storage tier"
-  default     = 60
-}
+# variable "log_glacier_transition_days" {
+#   description = "Number of days after which to move the data to the glacier storage tier"
+#   default     = 60
+# }
 
-variable "log_expiration_days" {
-  description = "Number of days after which to expunge the objects"
-  default     = 90
-}
+# variable "log_expiration_days" {
+#   description = "Number of days after which to expunge the objects"
+#   default     = 90
+# }
 
 variable "forward_query_string" {
   type        = bool
@@ -145,34 +145,34 @@ variable "forward_query_string" {
   description = "Forward query strings to the origin that is associated with this cache behavior"
 }
 
-variable "cors_allowed_headers" {
-  type        = list(string)
-  default     = ["*"]
-  description = "List of allowed headers for S3 bucket"
-}
+# variable "cors_allowed_headers" {
+#   type        = list(string)
+#   default     = ["*"]
+#   description = "List of allowed headers for S3 bucket"
+# }
 
-variable "cors_allowed_methods" {
-  type        = list(string)
-  default     = ["GET"]
-  description = "List of allowed methods (e.g. GET, PUT, POST, DELETE, HEAD) for S3 bucket"
-}
+# variable "cors_allowed_methods" {
+#   type        = list(string)
+#   default     = ["GET"]
+#   description = "List of allowed methods (e.g. GET, PUT, POST, DELETE, HEAD) for S3 bucket"
+# }
 
-variable "cors_allowed_origins" {
-  type        = list(string)
-  default     = []
-  description = "List of allowed origins (e.g. example.com, test.com) for S3 bucket"
-}
+# variable "cors_allowed_origins" {
+#   type        = list(string)
+#   default     = []
+#   description = "List of allowed origins (e.g. example.com, test.com) for S3 bucket"
+# }
 
-variable "cors_expose_headers" {
-  type        = list(string)
-  default     = ["ETag"]
-  description = "List of expose header in the response for S3 bucket"
-}
+# variable "cors_expose_headers" {
+#   type        = list(string)
+#   default     = ["ETag"]
+#   description = "List of expose header in the response for S3 bucket"
+# }
 
-variable "cors_max_age_seconds" {
-  default     = 3600
-  description = "Time in seconds that browser can cache the response for S3 bucket"
-}
+# variable "cors_max_age_seconds" {
+#   default     = 3600
+#   description = "Time in seconds that browser can cache the response for S3 bucket"
+# }
 
 variable "forward_cookies" {
   type        = string
@@ -246,17 +246,17 @@ variable "geo_restriction_locations" {
   description = "List of country codes for which  CloudFront either to distribute content (whitelist) or not distribute your content (blacklist)"
 }
 
-variable "parent_zone_id" {
-  type        = string
-  default     = ""
-  description = "ID of the hosted zone to contain this record  (or specify `parent_zone_name`)"
-}
+# variable "parent_zone_id" {
+#   type        = string
+#   default     = ""
+#   description = "ID of the hosted zone to contain this record  (or specify `parent_zone_name`)"
+# }
 
-variable "parent_zone_name" {
-  type        = string
-  default     = ""
-  description = "Name of the hosted zone to contain this record (or specify `parent_zone_id`)"
-}
+# variable "parent_zone_name" {
+#   type        = string
+#   default     = ""
+#   description = "Name of the hosted zone to contain this record (or specify `parent_zone_id`)"
+# }
 
 variable "null" {
   description = "an empty string"

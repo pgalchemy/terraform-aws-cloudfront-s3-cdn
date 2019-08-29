@@ -1,0 +1,24 @@
+{
+  "name": "terraform-aws-cloudfront-s3-cdn",
+  "version": "0.10.0",
+  "description": "Terraform module to easily provision CloudFront CDN backed by an S3 origin",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgalchemy/terraform-aws-cloudfront-s3-cdn.git"
+  },
+  "author": "Jeremiah Harlan <jeremiah.harlan@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgalchemy/terraform-aws-cloudfront-s3-cdn/issues"
+  },
+  "homepage": "https://github.com/pgalchemy/terraform-aws-cloudfront-s3-cdn#readme"
+}
